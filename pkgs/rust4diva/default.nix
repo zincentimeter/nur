@@ -2,11 +2,15 @@
 , fetchFromGitHub
 , rustPlatform
 , autoPatchelfHook
+, makeWrapper
 , openssl
 , libarchive
 , wayland
 , pkg-config
 , stdenv
+, libxkbcommon
+, libGL
+, xorg
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -20,8 +24,12 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-ZWFTiBqh4QSKdBGc4u54daoHeorR8x+IlmQ2wzzFm4M=";
   };
 
+  useFetchCargoVendor = true;
+  cargoHash = "sha256-ywZ2ElxW55NDwnn2PQwkVOyZPfZWFADFv2QCZmOhdug=";
+
   nativeBuildInputs = [
     autoPatchelfHook
+    makeWrapper
     pkg-config
   ];
 
@@ -30,9 +38,17 @@ rustPlatform.buildRustPackage rec {
     libarchive
     wayland
     stdenv.cc.cc.lib
+    libxkbcommon
+    libGL
+    xorg.libXcursor
+    xorg.libXrandr
+    xorg.libXi
   ];
 
-  cargoHash = "sha256-GMyrv3NMzcqcm24Z4iOuAhy8lw39xc/NmN0qG5t2Bm0=";
+  postInstall = ''
+    patchelf --add-rpath "${lib.makeLibraryPath buildInputs}" $out/bin/rust4diva 
+    wrapProgram "$out/bin/rust4diva" --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath buildInputs}"
+  '';
 
   meta = {
     description = "Mod Manager for Project Diva MegaMix +";
