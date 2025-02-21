@@ -6,6 +6,7 @@
 , openssl
 , libarchive
 , wayland
+, fontconfig
 , pkg-config
 , stdenv
 , libxkbcommon
@@ -37,6 +38,8 @@ rustPlatform.buildRustPackage rec {
     openssl
     libarchive
     wayland
+    fontconfig
+
     stdenv.cc.cc.lib
     libxkbcommon
     libGL
