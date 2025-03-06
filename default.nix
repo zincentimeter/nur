@@ -15,6 +15,8 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   rust4diva = pkgs.callPackage ./pkgs/rust4diva { };
+  typora = pkgs.callPackage ./pkgs/typora { };
+  # atrust = pkgs.callPackage ./pkgs/atrust {};
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
