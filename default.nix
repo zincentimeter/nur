@@ -20,7 +20,8 @@
     rosbags = pkgs.python3Packages.callPackage ./pkgs/rosbags { };
     evo = pkgs.python3Packages.callPackage ./pkgs/evo { inherit rosbags; };
   };
-  # atrust = pkgs.callPackage ./pkgs/atrust {};
+  atrust = pkgs.callPackage ./pkgs/atrust {};
+  atrust-fhs = pkgs.callPackage ./pkgs/atrust/fhs.nix {};
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
