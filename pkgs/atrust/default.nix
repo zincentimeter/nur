@@ -95,10 +95,6 @@ stdenv.mkDerivation {
         "Common.APP_DATA_PATH=\"/usr/share/applications\"" \
         "Common.APP_DATA_PATH=path.join(process.env[\"HOME\"],\".aTrust/applications\")"
 
-    substituteInPlace "$out/usr/share/sangfor/aTrust/resources/app/src/controller/qttray_controller.js" \
-      --replace-fail \
-        "Path.join(Common.DEFAULT_AGENT_DIR,\"../../../aTrust/aTrustTray2\")" \
-        "Path.join(\"../../../aTrust/aTrustTray2\")"
 
     find $out -type f \
       \( -name "*.desktop" -o -name "*.service" -o -name "*.js" -o -name "*.sh" \) \
@@ -108,6 +104,12 @@ stdenv.mkDerivation {
           echo "Patching $file"; \
           substituteInPlace "$file" --replace-warn "/usr/share/sangfor" "$out/usr/share/sangfor"; \
         done
+
+    # must happen after grand replace of /usr/share/sangfor, otherwise will be replaced twice.
+    substituteInPlace "$out/usr/share/sangfor/aTrust/resources/app/src/controller/qttray_controller.js" \
+      --replace-fail \
+        "Path.join(Common.DEFAULT_AGENT_DIR,\"../../../aTrust/aTrustTray2\")" \
+        "Path.join(\"$out/usr/share/sangfor/aTrust/aTrustTray2\")"
 
     wrapProgram "$out/usr/share/sangfor/aTrust/aTrustTray2" \
       "''${gappsWrapperArgs[@]}" \

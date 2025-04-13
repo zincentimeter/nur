@@ -15,6 +15,7 @@ pkgs.buildFHSEnv {
 
   runScript = ''
     # Create required directories in home directory
+
     mkdir -p "$HOME/.aTrust/var/run"
     mkdir -p "$HOME/.aTrust/var/run/plugins/aTrustTunnel"
     mkdir -p "$HOME/.aTrust/var/run/plugins/aTrustCore"
@@ -23,6 +24,6 @@ pkgs.buildFHSEnv {
     mkdir -p "$HOME/.aTrust/var/conf"
     mkdir -p "$HOME/.aTrust/applications"
 
-    ${atrust}/usr/share/sangfor/aTrust/aTrustTray --no-sandbox
+    ${atrust}/usr/share/sangfor/aTrust/aTrustTray --no-sandbox --disable-gpu
   '';
 }
