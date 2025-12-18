@@ -35,6 +35,7 @@ rec { # recursively using lib function defined inside
     );
   in
   {
+    recurseForDerivations = true; # to build packages below
     colorschemeswapper-plasmoid = callKdePluginPackage ./pkgs/kdePlugins/colorschemeswapper-plasmoid { };
   };
   # atrust = pkgs.callPackage ./pkgs/atrust {};
