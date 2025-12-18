@@ -26,7 +26,6 @@ rec { # recursively using lib function defined inside
   # TODO:
   # - add
   #   - org.kde.windowtitle
-  #   - org.kde.plasma.shutdownorswitch
   # - install into $XDG_DATA_DIRS
   kdePlugins = import ./pkgs/kdePlugins { inherit pkgs lib; };
   # atrust = pkgs.callPackage ./pkgs/atrust {};

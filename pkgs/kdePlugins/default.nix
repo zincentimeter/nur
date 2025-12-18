@@ -9,4 +9,5 @@ in
   recurseForDerivations = true; # to build packages below
 
   colorschemeswapper = callKdePluginPackage ./colorschemeswapper.nix { };
+  shutdown-or-switch = callKdePluginPackage ./shutdown-or-switch.nix { };
 }
