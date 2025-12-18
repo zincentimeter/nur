@@ -4,7 +4,7 @@
 }:
 
 buildKdePlugin {
-  pname = "colorschemeswapper-plasmoid";
+  pname = "colorschemeswapper";
   kPluginId = "com.github.heqro.day-night-switcher";
   version = "0.0.1";
   src = fetchFromGitHub {

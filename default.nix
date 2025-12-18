@@ -28,16 +28,7 @@ rec { # recursively using lib function defined inside
   #   - org.kde.windowtitle
   #   - org.kde.plasma.shutdownorswitch
   # - install into $XDG_DATA_DIRS
-  kdePlugins =
-  let
-    callKdePluginPackage = (pkg: attrs:
-      pkgs.callPackage pkg (attrs // { inherit (lib) buildKdePlugin; })
-    );
-  in
-  {
-    recurseForDerivations = true; # to build packages below
-    colorschemeswapper-plasmoid = callKdePluginPackage ./pkgs/kdePlugins/colorschemeswapper-plasmoid { };
-  };
+  kdePlugins = import ./pkgs/kdePlugins { inherit pkgs lib; };
   # atrust = pkgs.callPackage ./pkgs/atrust {};
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
