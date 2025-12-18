@@ -20,7 +20,7 @@ with pkgs.lib; {
       ...
     } @ attrs:
     (
-      pkgs.stdenv.mkDerivation
+      pkgs.stdenvNoCC.mkDerivation
         (
           attrs //
           {
