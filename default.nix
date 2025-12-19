@@ -20,15 +20,6 @@ rec { # recursively using lib function defined inside
     rosbags = pkgs.python3Packages.callPackage ./pkgs/rosbags { };
     evo = pkgs.python3Packages.callPackage ./pkgs/evo { inherit rosbags; };
   };
-
   alpine-virt = pkgs.callPackage ./pkgs/alpine-virt { };
-
-  # TODO:
-  # - add
-  #   - org.kde.windowtitle
-  # - install into $XDG_DATA_DIRS
   kdePlugins = import ./pkgs/kdePlugins { inherit pkgs lib; };
-  # atrust = pkgs.callPackage ./pkgs/atrust {};
-  # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
-  # ...
 }
