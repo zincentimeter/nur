@@ -2,7 +2,7 @@
 , fetchFromGitHub
 , buildGoModule
 , makeWrapper
-, pinentry-tty
+, pinentry-qt
 }:
 
 buildGoModule rec {
@@ -16,13 +16,13 @@ buildGoModule rec {
     hash = "sha256-H5JRumCYYxwLdIMi7pnTUVs8RM/A8oF2TDWXL3+IPYM=";
   };
 
-  buildInputs = [ makeWrapper pinentry-tty ];
+  buildInputs = [ makeWrapper pinentry-qt ];
 
   vendorHash = "sha256-6A66gIbKvm4BfVzXDs5IAuX9gBghxX3BIHQgVfn4P5E=";
 
   # https://github.com/matejsmycka/linux-id?tab=readme-ov-file#known-issues
   postInstall = ''
-    wrapProgram "$out/bin/linux-id" --set PINENTRY_PATH ${pinentry-tty}/bin/pinentry
+    wrapProgram "$out/bin/linux-id" --set PINENTRY_PATH ${pinentry-qt}/bin/pinentry-qt
   '';
 
   meta = {
