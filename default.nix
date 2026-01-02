@@ -23,4 +23,5 @@ rec { # recursively using lib function defined inside
   alpine-virt = pkgs.callPackage ./pkgs/alpine-virt { };
   kdePlugins = import ./pkgs/kdePlugins { inherit pkgs lib; };
   linux-id = pkgs.callPackage ./pkgs/linux-id { };
+  rsibreak = pkgs.kdePackages.callPackage ./pkgs/rsibreak { };
 }
