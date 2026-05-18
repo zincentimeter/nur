@@ -11,7 +11,9 @@
 , stdenv
 , libxkbcommon
 , libGL
-, xorg
+, libxcursor
+, libxrandr
+, libxi
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -42,9 +44,9 @@ rustPlatform.buildRustPackage rec {
     stdenv.cc.cc.lib
     libxkbcommon
     libGL
-    xorg.libXcursor
-    xorg.libXrandr
-    xorg.libXi
+    libxcursor
+    libxrandr
+    libxi
   ];
 
   postInstall = ''
